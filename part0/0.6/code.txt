@@ -1,0 +1,7 @@
+title Exercise 0.6
+
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+Server->Browser: Send Status 201 Created /exampleapp/new_note_spa and Response {"message":"note created"} 
+note over Browser:
+browser renders notes to display
+end note

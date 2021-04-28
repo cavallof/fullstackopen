@@ -1,0 +1,31 @@
+title Exercise 0.4
+note over Browser:
+the browser send the user input to the server
+end note
+
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+note over Server:
+Server response with 302 status (redirect to /exampleapp/notes)
+end note
+
+Server->Browser: 302 Status
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server->Browser: HTML Code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server->Browser: main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server->Browser: main.js
+
+note over Browser:
+browser starts executing js-code
+that requests JSON data from server 
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server->Browser: [{"content":"dfg","date":"2021-04-28T06:54:37.103Z"}, ...]
+
+note over Browser:
+browser executes the event handler
+that renders notes to display
+end note
