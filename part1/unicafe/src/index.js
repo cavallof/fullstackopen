@@ -43,21 +43,36 @@ const App = () => {
     if (total()<1) return 0
     return good * 100 / total()
   }
-  return (
-    <div>
+
+  if(total()===0){
+    return (
+      <div>
       <Title title={title}/>
-      <Button handleClick={increaseGood} text='good' />
-      <Button handleClick={increaseNeutral} text='neutral' />
-      <Button handleClick={increaseBad} text='bad' />
-      <Titlestatistics title={statistics} />
-      <Statistics text={'Good'} value={good} />
-      <Statistics text={'Neutral'} value={neutral} />
-      <Statistics text={'Bad'} value={bad} />
-      <Statistics text={'All'} value={total()} />
-      <Statistics text={'Average'} value={average()} />
-      <Statistics text={'Positive'} value={positivePercent() + '%'} />
-    </div>
-  )
+        <Button handleClick={increaseGood} text='good' />
+        <Button handleClick={increaseNeutral} text='neutral' />
+        <Button handleClick={increaseBad} text='bad' />
+        <Titlestatistics title={statistics} />
+        <Statistics text={'No feedback given'} />
+        </div>
+    )
+  } else {
+    return (
+      <div>
+        <Title title={title}/>
+        <Button handleClick={increaseGood} text='good' />
+        <Button handleClick={increaseNeutral} text='neutral' />
+        <Button handleClick={increaseBad} text='bad' />
+        <Titlestatistics title={statistics} />
+        <Statistics text={'Good'} value={good} />
+        <Statistics text={'Neutral'} value={neutral} />
+        <Statistics text={'Bad'} value={bad} />
+        <Statistics text={'All'} value={total()} />
+        <Statistics text={'Average'} value={average()} />
+        <Statistics text={'Positive'} value={positivePercent() + '%'} />
+      </div>
+    )
+  }  
+  
 }
 
 ReactDOM.render(<App />, 
