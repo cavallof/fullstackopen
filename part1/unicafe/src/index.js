@@ -21,16 +21,26 @@ const Button = ({handleClick, text}) =>{
 
 const Statistics = (props)=> {
   if (props.total === 0){
-    return <Statistic text={'No feedback given'} />
+    return (
+    <table>
+      <tbody>
+        <Statistic text={'No feedback given'} />
+      </tbody>
+    </table>
+    )
   } else {
     return(
       <div>
+        <table>
+          <tbody>            
          <Statistic text={'Good'} value={props.good} />
          <Statistic text={'Neutral'} value={props.neutral} />
          <Statistic text={'Bad'} value={props.bad} />
          <Statistic text={'All'} value={props.total} />
          <Statistic text={'Average'} value={props.average} />
          <Statistic text={'Positive'} value={props.positivePercent + '%'} />
+          </tbody>
+         </table>
       </div>
      )
   }
@@ -39,7 +49,10 @@ const Statistics = (props)=> {
 
 const Statistic = ({text, value})=> {
   return(
-    <p>{text} {value}</p>
+    <tr>
+      <td>{text}</td>    
+      <td>{value}</td>
+    </tr>
   )
 }
 
