@@ -19,7 +19,25 @@ const Button = ({handleClick, text}) =>{
   )
 }
 
-const Statistics = ({text, value})=> {
+const Statistics = (props)=> {
+  if (props.total === 0){
+    return <Statistic text={'No feedback given'} />
+  } else {
+    return(
+      <div>
+         <Statistic text={'Good'} value={props.good} />
+         <Statistic text={'Neutral'} value={props.neutral} />
+         <Statistic text={'Bad'} value={props.bad} />
+         <Statistic text={'All'} value={props.total} />
+         <Statistic text={'Average'} value={props.average} />
+         <Statistic text={'Positive'} value={props.positivePercent + '%'} />
+      </div>
+     )
+  }
+  
+}
+
+const Statistic = ({text, value})=> {
   return(
     <p>{text} {value}</p>
   )
@@ -43,37 +61,24 @@ const App = () => {
     if (total()<1) return 0
     return good * 100 / total()
   }
-
-  if(total()===0){
-    return (
-      <div>
-      <Title title={title}/>
-        <Button handleClick={increaseGood} text='good' />
-        <Button handleClick={increaseNeutral} text='neutral' />
-        <Button handleClick={increaseBad} text='bad' />
-        <Titlestatistics title={statistics} />
-        <Statistics text={'No feedback given'} />
-        </div>
-    )
-  } else {
-    return (
+   return (
       <div>
         <Title title={title}/>
         <Button handleClick={increaseGood} text='good' />
         <Button handleClick={increaseNeutral} text='neutral' />
         <Button handleClick={increaseBad} text='bad' />
         <Titlestatistics title={statistics} />
-        <Statistics text={'Good'} value={good} />
-        <Statistics text={'Neutral'} value={neutral} />
-        <Statistics text={'Bad'} value={bad} />
-        <Statistics text={'All'} value={total()} />
-        <Statistics text={'Average'} value={average()} />
-        <Statistics text={'Positive'} value={positivePercent() + '%'} />
+        <Statistics good={good}
+          neutral={neutral}
+          bad={bad}
+          total={total()} 
+          average={average()} 
+          positivePercent={positivePercent()} />   
       </div>
     )
-  }  
+}  
   
-}
+
 
 ReactDOM.render(<App />, 
   document.getElementById('root')
